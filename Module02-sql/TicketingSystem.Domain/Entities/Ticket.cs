@@ -13,6 +13,8 @@ namespace TicketingSystem.Domain.Entities
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
 
+        public Payment? Payment { get; set; }
+
         public virtual ICollection<Offer> Offers { get; set; }
     }
 }

@@ -23,6 +23,10 @@ namespace TicketingSystem.Infrastructure.Persistence.Configurations
                 .WithOne(o => o.Ticket)
                 .HasForeignKey(o => o.TicketId)
                 .IsRequired(false);
+            builder.HasOne(t => t.Payment)
+                .WithOne(p => p.Ticket)
+                .HasForeignKey<Payment>(p => p.TicketId)
+                .IsRequired();
 
             builder.Property(t => t.Status)
                 .HasDefaultValue(TicketStatus.Available)
