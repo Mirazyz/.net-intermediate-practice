@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Module02_sql</RootNamespace>
+    <RootNamespace>TicketingSystem</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

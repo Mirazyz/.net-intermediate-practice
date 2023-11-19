@@ -1,5 +1,5 @@
 
-namespace Module02_sql
+namespace TicketingSystem
 {
     public class Program
     {
