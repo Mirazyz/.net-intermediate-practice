@@ -7,6 +7,9 @@ namespace TicketingSystem.Domain.Entities
     {
         public TicketStatus Status { get; set; }
 
+        public int EventId { get; set; }
+        public Event Event { get; set; }
+
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
 

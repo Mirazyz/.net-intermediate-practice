@@ -8,7 +8,7 @@ namespace TicketingSystem.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Venue> builder)
         {
-            builder.ToFunction(nameof(Venue));
+            builder.ToTable(nameof(Venue));
             builder.HasKey(v => v.Id);
 
             builder.HasOne(v => v.Address)

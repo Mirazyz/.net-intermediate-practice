@@ -13,14 +13,12 @@ namespace TicketingSystem.Infrastructure.Persistence.Configurations
 
             builder.HasOne(o => o.Seat)
                 .WithOne(s => s.Offer)
-                .HasForeignKey<Offer>(o => o.SeatId);
+                .HasForeignKey<Offer>(o => o.SeatId)
+                .IsRequired();
             builder.HasOne(o => o.Ticket)
                 .WithMany(t => t.Offers)
                 .HasForeignKey(o => o.TicketId)
                 .IsRequired(false);
-            builder.HasOne(o => o.Event)
-                .WithMany(t => t.Offers)
-                .HasForeignKey(o => o.EventId);
             builder.HasOne(o => o.Ticket)
                 .WithMany(t => t.Offers)
                 .HasForeignKey(o => o.TicketId);

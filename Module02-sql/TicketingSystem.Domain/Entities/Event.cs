@@ -13,6 +13,5 @@ namespace TicketingSystem.Domain.Entities
         public Venue Venue { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
-        public virtual ICollection<Offer> Offers { get; set; }
     }
 }

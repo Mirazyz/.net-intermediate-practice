@@ -16,6 +16,9 @@ namespace TicketingSystem.Infrastructure.Persistence.Configurations
                 .WithMany(c => c.Tickets)
                 .HasForeignKey(t => t.CustomerId)
                 .IsRequired(false);
+            builder.HasOne(t => t.Event)
+                .WithMany(e => e.Tickets)
+                .HasForeignKey(t => t.EventId);
             builder.HasMany(t => t.Offers)
                 .WithOne(o => o.Ticket)
                 .HasForeignKey(o => o.TicketId)

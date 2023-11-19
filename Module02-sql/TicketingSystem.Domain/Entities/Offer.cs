@@ -9,9 +9,6 @@ namespace TicketingSystem.Domain.Entities
         public decimal SalePercentage { get; set; }
         public decimal Price { get; set; }
 
-        public int EventId { get; set; }
-        public Event Event { get; set; }
-
         public int SeatId { get; set; }
         public Seat Seat { get; set; }
 
