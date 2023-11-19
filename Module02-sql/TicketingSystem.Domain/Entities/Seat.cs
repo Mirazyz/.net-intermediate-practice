@@ -14,6 +14,5 @@ namespace TicketingSystem.Domain.Entities
         public Manifest Manifest { get; set; }
 
         public Offer? Offer { get; set; }
-        public Ticket? Ticket { get; set; }
     }
 }

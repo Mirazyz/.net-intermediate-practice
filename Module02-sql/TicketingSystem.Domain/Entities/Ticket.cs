@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TicketingSystem.Domain.Common;
+using TicketingSystem.Domain.Enums;
 
 namespace TicketingSystem.Domain.Entities
 {
-    internal class Ticket
+    public class Ticket : BaseAuditableEntity
     {
+        public TicketStatus Status { get; set; }
+
+        public int OfferId { get; set; }
+        public Offer Offer { get; set; }
+
+        public int? CustomerId { get; set; }
+        public Customer? Customer { get; set; }
     }
 }
