@@ -7,10 +7,9 @@ namespace TicketingSystem.Domain.Entities
     {
         public TicketStatus Status { get; set; }
 
-        public int OfferId { get; set; }
-        public Offer Offer { get; set; }
-
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
+
+        public virtual ICollection<Offer> Offers { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace TicketingSystem.Domain.Entities
         public int SeatId { get; set; }
         public Seat Seat { get; set; }
 
+        public int? TicketId { get; set; }
         public Ticket? Ticket { get; set; }
     }
 }

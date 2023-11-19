@@ -8,7 +8,7 @@ namespace TicketingSystem.Domain.Entities
         public int Number { get; set; }
         public int Row { get; set; }
         public SeatType Type { get; set; }
-        public decimal StandardPrice { get; set; }
+        public decimal? StandardPrice { get; set; }
 
         public int ManifestId { get; set; }
         public Manifest Manifest { get; set; }

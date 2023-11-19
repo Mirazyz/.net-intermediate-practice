@@ -8,5 +8,7 @@ namespace TicketingSystem.Domain.Entities
         public string Landmark { get; set; }
         public string Latitude { get; set; }
         public string Longtitude { get; set; }
+
+        public Venue Venue { get; set; }
     }
 }
