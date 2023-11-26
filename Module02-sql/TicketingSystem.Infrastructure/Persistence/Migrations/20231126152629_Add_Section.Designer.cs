@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketingSystem.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using TicketingSystem.Infrastructure.Persistence;
 namespace TicketingSystem.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    partial class TicketingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231126152629_Add_Section")]
+    partial class Add_Section
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
