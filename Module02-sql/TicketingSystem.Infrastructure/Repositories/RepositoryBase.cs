@@ -2,8 +2,9 @@
 using TicketingSystem.Domain.Common;
 using TicketingSystem.Domain.Exceptions;
 using TicketingSystem.Domain.Interfaces.Repositories;
+using TicketingSystem.Infrastructure.Persistence;
 
-namespace TicketingSystem.Infrastructure.Persistence.Repositories
+namespace TicketingSystem.Infrastructure.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity
     {
@@ -26,12 +27,7 @@ namespace TicketingSystem.Infrastructure.Persistence.Repositories
         public async Task<T> FindByIdAsync(int id)
         {
             var entity = await _context.Set<T>()
-                .FindAsync(id);
-
-            if (entity is null)
-            {
-                throw new EntityNotFoundException($"Entity {typeof(T)} with id: {id} was not found.");
-            }
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             return entity;
         }

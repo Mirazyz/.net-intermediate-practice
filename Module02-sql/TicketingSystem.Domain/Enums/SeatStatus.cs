@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Domain.Enums
 {
-    public enum TicketStatus
+    public enum SeatStatus
     {
         Available,
         Booked,

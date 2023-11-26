@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketingSystem.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using TicketingSystem.Infrastructure.Persistence;
 namespace TicketingSystem.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    partial class TicketingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231126174250_Update_Manifest_Venue_Relationship")]
+    partial class Update_Manifest_Venue_Relationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -320,9 +323,6 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
                     b.Property<decimal?>("StandardPrice")
                         .HasColumnType("money");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
@@ -397,7 +397,7 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasDefaultValue(2);
 
                     b.HasKey("Id");
 

@@ -1,6 +1,7 @@
 ﻿using TicketingSystem.Domain.Interfaces.Repositories;
+using TicketingSystem.Infrastructure.Persistence;
 
-namespace TicketingSystem.Infrastructure.Persistence.Repositories
+namespace TicketingSystem.Infrastructure.Repositories
 {
     public class CommonRepository : ICommonRepository
     {
@@ -106,6 +107,26 @@ namespace TicketingSystem.Infrastructure.Persistence.Repositories
             }
         }
 
+        private ICartRepository _carts;
+        public ICartRepository Carts
+        {
+            get
+            {
+                _carts ??= new CartRepository(_context);
+                return _carts;
+            }
+        }
+
+        private ICartItemRepository _cartItems;
+        public ICartItemRepository CartItems
+        {
+            get
+            {
+                _cartItems ??= new CartItemRepository(_context);
+                return _cartItems;
+            }
+        }
+
         public Task<int> SaveChangesAsync() => _context.SaveChangesAsync();
 
         public CommonRepository(TicketingSystemDbContext context)
@@ -122,6 +143,8 @@ namespace TicketingSystem.Infrastructure.Persistence.Repositories
             _sections = new SectionRepository(context);
             _tickets = new TicketRepository(context);
             _venues = new VenueRepository(context);
+            _carts = new CartRepository(context);
+            _cartItems = new CartItemRepository(context);
         }
     }
 }

@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Module02_sql.Extensions;
 using TicketingSystem.Infrastructure.Persistence;
 using TicketingSystem.Infrastructure.Persistence.Interceptors;
 
@@ -21,6 +22,9 @@ namespace TicketingSystem
             builder.Services.AddDbContext<TicketingSystemDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("TicketingSystemConnection"), builder =>
                 builder.MigrationsAssembly(typeof(TicketingSystemDbContext).Assembly.FullName)));
+
+            builder.Services.ConfigureRepositories();
+            builder.Services.ConfigureServices();
 
             var app = builder.Build();
 

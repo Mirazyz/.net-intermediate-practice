@@ -14,5 +14,7 @@ namespace TicketingSystem.Domain.Entities
 
         public int? TicketId { get; set; }
         public Ticket? Ticket { get; set; }
+
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

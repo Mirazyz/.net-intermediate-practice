@@ -18,9 +18,10 @@ namespace TicketingSystem.Infrastructure.Persistence.Configurations
             builder.HasMany(v => v.Events)
                 .WithOne(e => e.Venue)
                 .HasForeignKey(e => e.VenueId);
-            builder.HasMany(v => v.Manifests)
+            builder.HasOne(v => v.Manifest)
                 .WithOne(m => m.Venue)
-                .HasForeignKey(m => m.VenueId);
+                .HasForeignKey<Manifest>(m => m.VenueId)
+                .IsRequired();
 
             builder.Property(v => v.Name)
                 .HasMaxLength(255)

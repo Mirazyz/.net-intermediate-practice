@@ -12,6 +12,8 @@
         public ISectionRepository Sections { get; }
         public ITicketRepository Tickets { get; }
         public IVenueRepository Venues { get; }
+        public ICartRepository Carts { get; }
+        public ICartItemRepository CartItems { get; }
         public Task<int> SaveChangesAsync();
     }
 }
