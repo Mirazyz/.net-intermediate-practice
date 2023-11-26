@@ -10,6 +10,6 @@ namespace TicketingSystem.Domain.Entities
         public int VenueId { get; set; }
         public Venue Venue { get; set; }
 
-        public virtual ICollection<Seat> Seats { get; set; }
+        public virtual ICollection<Section> Sections { get; set; }
     }
 }

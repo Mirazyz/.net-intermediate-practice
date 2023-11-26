@@ -11,9 +11,9 @@ namespace TicketingSystem.Infrastructure.Persistence.Configurations
             builder.ToTable(nameof(Seat));
             builder.HasKey(s => s.Id);
 
-            builder.HasOne(s => s.Manifest)
+            builder.HasOne(s => s.Section)
                 .WithMany(m => m.Seats)
-                .HasForeignKey(s => s.ManifestId);
+                .HasForeignKey(s => s.SectionId);
             builder.HasOne(s => s.Offer)
                 .WithOne(o => o.Seat)
                 .HasForeignKey<Offer>(o => o.SeatId)

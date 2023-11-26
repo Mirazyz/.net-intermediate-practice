@@ -9,7 +9,8 @@ namespace TicketingSystem.Domain.Entities
         public int AddressId { get; set; }
         public Address Address { get; set; }
 
+        public Manifest? Manifest { get; set; }
+
         public virtual ICollection<Event> Events { get; set; }
-        public virtual ICollection<Manifest> Manifests { get; set; }
     }
 }

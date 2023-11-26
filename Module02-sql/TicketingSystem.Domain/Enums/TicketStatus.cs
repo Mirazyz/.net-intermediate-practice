@@ -2,8 +2,8 @@
 {
     public enum TicketStatus
     {
-        Sold,
+        Available,
         Booked,
-        Available
+        Sold
     }
 }

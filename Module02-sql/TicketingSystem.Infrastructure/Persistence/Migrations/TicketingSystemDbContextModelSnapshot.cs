@@ -183,7 +183,8 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VenueId");
+                    b.HasIndex("VenueId")
+                        .IsUnique();
 
                     b.ToTable("Manifest", (string)null);
                 });
@@ -273,6 +274,9 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
@@ -304,26 +308,64 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ManifestId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
                     b.Property<int>("Row")
                         .HasColumnType("int");
 
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("StandardPrice")
                         .HasColumnType("money");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ManifestId");
+                    b.HasIndex("SectionId");
 
                     b.ToTable("Seat", (string)null);
+                });
+
+            modelBuilder.Entity("TicketingSystem.Domain.Entities.Section", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ManifestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManifestId");
+
+                    b.ToTable("Section", (string)null);
                 });
 
             modelBuilder.Entity("TicketingSystem.Domain.Entities.Ticket", b =>
@@ -355,7 +397,7 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(2);
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
@@ -416,8 +458,8 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("TicketingSystem.Domain.Entities.Manifest", b =>
                 {
                     b.HasOne("TicketingSystem.Domain.Entities.Venue", "Venue")
-                        .WithMany("Manifests")
-                        .HasForeignKey("VenueId")
+                        .WithOne("Manifest")
+                        .HasForeignKey("TicketingSystem.Domain.Entities.Manifest", "VenueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -454,8 +496,19 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("TicketingSystem.Domain.Entities.Seat", b =>
                 {
-                    b.HasOne("TicketingSystem.Domain.Entities.Manifest", "Manifest")
+                    b.HasOne("TicketingSystem.Domain.Entities.Section", "Section")
                         .WithMany("Seats")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Section");
+                });
+
+            modelBuilder.Entity("TicketingSystem.Domain.Entities.Section", b =>
+                {
+                    b.HasOne("TicketingSystem.Domain.Entities.Manifest", "Manifest")
+                        .WithMany("Sections")
                         .HasForeignKey("ManifestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -509,12 +562,17 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("TicketingSystem.Domain.Entities.Manifest", b =>
                 {
-                    b.Navigation("Seats");
+                    b.Navigation("Sections");
                 });
 
             modelBuilder.Entity("TicketingSystem.Domain.Entities.Seat", b =>
                 {
                     b.Navigation("Offer");
+                });
+
+            modelBuilder.Entity("TicketingSystem.Domain.Entities.Section", b =>
+                {
+                    b.Navigation("Seats");
                 });
 
             modelBuilder.Entity("TicketingSystem.Domain.Entities.Ticket", b =>
@@ -528,7 +586,7 @@ namespace TicketingSystem.Infrastructure.Persistence.Migrations
                 {
                     b.Navigation("Events");
 
-                    b.Navigation("Manifests");
+                    b.Navigation("Manifest");
                 });
 #pragma warning restore 612, 618
         }

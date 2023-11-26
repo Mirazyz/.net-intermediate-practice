@@ -9,6 +9,8 @@ namespace TicketingSystem.Domain.Entities
         public string PhoneNumber { get; set; }
         public DateTime Birthdate { get; set; }
 
+        public Cart? Cart { get; set; }
+
         public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

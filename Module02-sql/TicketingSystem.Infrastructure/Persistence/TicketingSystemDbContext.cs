@@ -13,10 +13,13 @@ namespace TicketingSystem.Infrastructure.Persistence
         public virtual DbSet<Seat> Seats { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
         public virtual DbSet<Manifest> Manifests { get; set; }
+        public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<CartItem> CartItems { get; set; }
 
         public TicketingSystemDbContext(DbContextOptions<TicketingSystemDbContext> options,
                                    AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor)
