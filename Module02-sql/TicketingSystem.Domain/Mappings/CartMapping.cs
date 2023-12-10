@@ -3,13 +3,13 @@ using TicketingSystem.Domain.DTOs.Cart;
 
 namespace TicketingSystem.Domain.Mappings
 {
-    public class Cart : Profile
+    public class CartMapping : Profile
     {
-        public Cart()
+        public CartMapping()
         {
-            CreateMap<Cart, CartDto>();
-            CreateMap<CartDto, Cart>();
-            CreateMap<CartForCreateDto, Cart>();
+            CreateMap<CartMapping, CartDto>();
+            CreateMap<CartDto, CartMapping>();
+            CreateMap<CartForCreateDto, CartMapping>();
         }
     }
 }
