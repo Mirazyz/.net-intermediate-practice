@@ -7,7 +7,7 @@ namespace TicketingSystem.Domain.Interfaces.Services
     {
         public Task<IEnumerable<CartItemDto>> GetCartItemsAsync(int cartId);
         public Task<CartDto> AddCartItemAsync(CartItemForCreateDto itemToCreate);
-        public Task<CartItemDto> AddItemAsync(CartItemForCreateDto itemtoCreate);
+        public Task<CartItemDto> AddItemAsync(CartItemForCreateDto itemToCreate);
         public Task BookItemsAsync(int id);
         public Task DeleteItemAsync(int cartId, int eventId, int seatId);
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TicketingSystem.Domain.DTOs.Cart;
 using TicketingSystem.Domain.DTOs.CartItem;
+using TicketingSystem.Domain.DTOs.Offer;
 using TicketingSystem.Domain.Entities;
 using TicketingSystem.Domain.Exceptions;
 using TicketingSystem.Domain.Interfaces.Repositories;
@@ -48,7 +49,7 @@ namespace TicketingSystem.Services
             await _repository.SaveChangesAsync();
         }
 
-        public async Task<CartDto> AddItemAsync(CartItemForCreateDto itemToCreate)
+        public async Task<CartItemDto> AddItemAsync(CartItemForCreateDto itemToCreate)
         {
             var cartItemEntity = _mapper.Map<CartItem>(itemToCreate);
 
@@ -62,10 +63,9 @@ namespace TicketingSystem.Services
 
             var totalDue = cartDto.CartItems.Sum(x => x.Offer.Price);
 
-            return cartDto with
-            {
-                TotalDue = totalDue
-            };
+            var offerDto = _mapper.Map<OfferDto>(await _repository.Offers.FindByIdAsync(cartItemEntity.Offer.Id));
+
+            return new CartItemDto(cartItemEntity.Id, cartDto, offerDto);
         }
 
         public async Task DeleteItemAsync(int cartId, int eventId, int seatId)
@@ -90,6 +90,16 @@ namespace TicketingSystem.Services
             }
 
             await _repository.CartItems.DeleteAsync(itemToDelete.Id);
+        }
+
+        public Task<IEnumerable<CartItemDto>> GetCartItemsAsync(int cartId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CartDto> AddCartItemAsync(CartItemForCreateDto itemToCreate)
+        {
+            throw new NotImplementedException();
         }
     }
 }
