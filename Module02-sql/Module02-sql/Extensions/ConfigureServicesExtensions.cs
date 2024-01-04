@@ -27,6 +27,7 @@ namespace Module02_sql.Extensions
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IVenueService, VenueService>();
+            services.AddScoped<IEventService, EventService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
