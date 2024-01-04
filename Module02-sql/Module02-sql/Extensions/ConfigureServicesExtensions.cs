@@ -29,6 +29,18 @@ namespace Module02_sql.Extensions
             services.AddScoped<IVenueService, VenueService>();
             services.AddScoped<IEventService, EventService>();
 
+            services.AddHttpCacheHeaders(
+                expirationModelOptions =>
+                {
+                    expirationModelOptions.MaxAge = 120;
+                    expirationModelOptions.CacheLocation = Marvin.Cache.Headers.CacheLocation.Private;
+                },
+                validationModelOptions =>
+                {
+                    validationModelOptions.MustRevalidate = true;
+                }
+                );
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;

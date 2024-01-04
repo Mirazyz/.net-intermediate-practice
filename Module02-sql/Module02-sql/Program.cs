@@ -43,6 +43,8 @@ namespace TicketingSystem
 
             app.UseResponseCaching();
 
+            app.UseHttpCacheHeaders();
+
             app.UseAuthorization();
 
             app.MapControllers();
