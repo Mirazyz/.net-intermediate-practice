@@ -20,5 +20,15 @@ namespace TicketingSystem.Infrastructure.Repositories
 
             return entities;
         }
+
+        public override async Task<CartItem> CreateAsync(CartItem entityToCreate)
+        {
+            await _context.Database.BeginTransactionAsync();
+            var createdEntity = await _context.CartItems.AddAsync(entityToCreate);
+            await _context.SaveChangesAsync();
+            await _context.Database.CommitTransactionAsync();
+
+            return createdEntity.Entity;
+        }
     }
 }
