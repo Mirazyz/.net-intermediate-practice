@@ -14,7 +14,11 @@ namespace TicketingSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(configure =>
+            {
+                configure.CacheProfiles.Add("240SecondsCacheProfile",
+                    new() { Duration = 240 });
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -37,8 +41,11 @@ namespace TicketingSystem
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseResponseCaching();
 
+            app.UseHttpCacheHeaders();
+
+            app.UseAuthorization();
 
             app.MapControllers();
 
