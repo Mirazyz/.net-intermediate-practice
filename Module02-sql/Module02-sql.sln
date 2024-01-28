@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Services", "TicketingSystem.Services\TicketingSystem.Services.csproj", "{5634B632-B06B-47DF-984B-268578AD6415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketingSystem.Tests.Unit", "Tests\TicketingSystem.Tests.Unit\TicketingSystem.Tests.Unit.csproj", "{06CA98D6-3B36-4F1E-888A-A73021CC4459}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Tests.Unit", "Tests\TicketingSystem.Tests.Unit\TicketingSystem.Tests.Unit.csproj", "{06CA98D6-3B36-4F1E-888A-A73021CC4459}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketingSystem.EmailService", "TicketingSystem.EmailService\TicketingSystem.EmailService.csproj", "{6F2452A9-086B-4406-8033-BEF42F6D117E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{06CA98D6-3B36-4F1E-888A-A73021CC4459}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06CA98D6-3B36-4F1E-888A-A73021CC4459}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06CA98D6-3B36-4F1E-888A-A73021CC4459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F2452A9-086B-4406-8033-BEF42F6D117E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2452A9-086B-4406-8033-BEF42F6D117E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2452A9-086B-4406-8033-BEF42F6D117E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2452A9-086B-4406-8033-BEF42F6D117E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
