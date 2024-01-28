@@ -38,6 +38,7 @@ namespace TicketingSystem.Services
             var eventEntity = _mapper.Map<Event>(eventToCreate);
 
             var createdEntity = await _repository.Events.CreateAsync(eventEntity);
+            await _repository.SaveChangesAsync();
 
             return _mapper.Map<EventDto>(createdEntity);
         }
