@@ -32,7 +32,7 @@ namespace TicketingSystem.Infrastructure.Repositories
             return entity;
         }
 
-        public async Task<T> CreateAsync(T entityToCreate)
+        public virtual async Task<T> CreateAsync(T entityToCreate)
         {
             var createdEntity = await _context.Set<T>().AddAsync(entityToCreate);
 

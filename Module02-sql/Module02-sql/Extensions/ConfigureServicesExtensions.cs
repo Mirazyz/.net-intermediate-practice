@@ -28,6 +28,8 @@ namespace Module02_sql.Extensions
         {
             services.AddScoped<IVenueService, VenueService>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IMessageProducer, MessageProducer>();
 
             services.AddHttpCacheHeaders(
                 expirationModelOptions =>

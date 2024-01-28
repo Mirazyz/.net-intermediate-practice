@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TicketingSystem.Domain.DTOs;
 using TicketingSystem.Domain.DTOs.Payment;
 using TicketingSystem.Domain.Interfaces.Services;
 
@@ -9,10 +10,12 @@ namespace Module02_sql.Controllers
     public class PaymentsController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
+        private readonly IMessageProducer _messageProducer;
 
-        public PaymentsController(IPaymentService paymentService)
+        public PaymentsController(IPaymentService paymentService, IMessageProducer messageProducer)
         {
             _paymentService = paymentService;
+            _messageProducer = messageProducer;
         }
 
         [HttpGet("{id}")]
@@ -23,15 +26,34 @@ namespace Module02_sql.Controllers
             return Ok(payment);
         }
 
-        [HttpGet("{id}/complete")]
+        [HttpPut("{id}/complete")]
         public async Task<ActionResult> CompletePaymentAsync(int id)
         {
-            await _paymentService.CompletePayment(id);
+            try
+            {
+                await _paymentService.CompletePayment(id);
+                _messageProducer.SendMessage(new NotificationDto(
+                    Guid.NewGuid(),
+                    OperationType.PaymentSucceeded,
+                    DateTime.Now,
+                    new NotificationParameters("John Doe", "john@gmail.com"),
+                    $"Payment: {id} completed successfully."));
 
-            return NoContent();
+                return NoContent();
+            }
+            catch
+            {
+                _messageProducer.SendMessage(new NotificationDto(
+                    Guid.NewGuid(),
+                    OperationType.PaymentFailed,
+                    DateTime.Now,
+                    new NotificationParameters("John Doe", "john@gmail.com"),
+                    $"Payment: {id} failed."));
+                throw;
+            }
         }
 
-        [HttpGet("{id}/failed")]
+        [HttpPost("{id}/failed")]
         public async Task<ActionResult> CancellPaymentAsync(int id)
         {
             await _paymentService.CancellPayment(id);

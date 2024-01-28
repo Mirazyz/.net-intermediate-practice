@@ -92,14 +92,22 @@ namespace TicketingSystem.Services
             await _repository.CartItems.DeleteAsync(itemToDelete.Id);
         }
 
-        public Task<IEnumerable<CartItemDto>> GetCartItemsAsync(int cartId)
+        public async Task<IEnumerable<CartItemDto>> GetCartItemsAsync(int cartId)
         {
-            throw new NotImplementedException();
+            var cartItems = await _repository.CartItems.FindByCartIdAsync(cartId);
+
+            return _mapper.Map<IEnumerable<CartItemDto>>(cartItems);
         }
 
-        public Task<CartDto> AddCartItemAsync(CartItemForCreateDto itemToCreate)
+        public async Task<CartDto> AddCartItemAsync(CartItemForCreateDto itemToCreate)
         {
-            throw new NotImplementedException();
+            var cartItemEntity = _mapper.Map<CartItem>(itemToCreate);
+
+            var createdEntity = await _repository.CartItems.CreateAsync(cartItemEntity);
+
+            var cart = await _repository.Carts.FindByIdAsync(createdEntity.CartId);
+
+            return _mapper.Map<CartDto>(cart);
         }
     }
 }
